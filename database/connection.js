@@ -1,3 +1,5 @@
+
+
 const mysql = require('mysql2/promise');
 
 const bd_usuario = 'us_etim_122_g2'; // usuário
@@ -29,4 +31,4 @@ try {
     console.log(error);
 }
 
-module.exports = conecction;
+module.exports = conecction;  

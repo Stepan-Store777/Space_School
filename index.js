@@ -18,6 +18,5 @@ app.listen(porta, () => {
 });
 
 app.get('/', (request, response) => {
-    response.send('Hello world');
+    response.send('Space_School');
 });
-
