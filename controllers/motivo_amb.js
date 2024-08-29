@@ -1,7 +1,7 @@
 const db = require('../database/connection'); 
 
 module.exports = {
-    async listarmotivo_amb(request, response) {
+    async listarMotivo_amb(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -16,7 +16,7 @@ module.exports = {
             });
         }
     }, 
-    async cadastrarmotivo_amb(request, response) {
+    async cadastrarMotivo_amb(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -31,7 +31,7 @@ module.exports = {
             });
         }
     }, 
-    async editarmotivo_amb(request, response) {
+    async editarMotivo_amb(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -46,7 +46,7 @@ module.exports = {
             });
         }
     }, 
-    async apagarmotivo_amb(request, response) {
+    async apagarMotivo_amb(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 

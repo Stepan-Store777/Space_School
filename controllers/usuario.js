@@ -1,7 +1,7 @@
 const db = require('../database/connection'); 
 
 module.exports = {
-    async listarusuario(request, response) {
+    async listarUsuario(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -16,7 +16,7 @@ module.exports = {
             });
         }
     }, 
-    async cadastrarusuario(request, response) {
+    async cadastrarUsuario(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -31,7 +31,7 @@ module.exports = {
             });
         }
     }, 
-    async editarusuario(request, response) {
+    async editarUsuario(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -46,7 +46,7 @@ module.exports = {
             });
         }
     }, 
-    async apagarusuario(request, response) {
+    async apagarUsuario(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 

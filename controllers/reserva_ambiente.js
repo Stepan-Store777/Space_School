@@ -1,7 +1,7 @@
 const db = require('../database/connection'); 
 
 module.exports = {
-    async listarreserva_ambiente(request, response) {
+    async listarReserva_ambiente(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -16,7 +16,7 @@ module.exports = {
             });
         }
     }, 
-    async cadastrarreserva_ambiente(request, response) {
+    async cadastrarReserva_ambiente(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -31,7 +31,7 @@ module.exports = {
             });
         }
     }, 
-    async editarreserva_ambiente(request, response) {
+    async editarReserva_ambiente(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
@@ -46,7 +46,7 @@ module.exports = {
             });
         }
     }, 
-    async apagarreserva_ambiente(request, response) {
+    async apagarReserva_ambiente(request, response) {
         try {            
             return response.status(200).json({
                 sucesso: true, 
