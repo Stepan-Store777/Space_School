@@ -4,21 +4,14 @@ module.exports = {
     async listarUsuario(request, response) {
         try {   
             
-            /* instruções SQL
-            const sql = `SELECT 
-              id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, 
-              bloqueado_usu, data_cad_usu, data_bloq_usu
-              FROM usuarios; `;
-            // executa as instruções SQL e armazena o resultado na variável usuários
+            const sql = `id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu FROM Usuario`;
+            
             const usuario = await db.query(sql);
            
-            */
-
-
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: usuario
             });
         } catch (error) {
             return response.status(500).json({

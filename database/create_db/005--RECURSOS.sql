@@ -15,19 +15,21 @@ DROP TABLE participantes_agendamento;
 
 
 
-SELECT * FROM Tipo_Usuario;
+SELECT id_Tipo_Usu, descricao FROM Tipo_Usuario;
 
-SELECT * FROM Usuario;
+SELECT id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu FROM Usuario;
 
-SELECT * FROM Ambientes;
+SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;
 
-SELECT * FROM reserva_ambiente;
+SELECT id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;
 
-SELECT * FROM avaliacao_ambiente;
+SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;
 
-SELECT * FROM favoritos;
+SELECT id_avaliacao, id_ambiente, id_usu, nota_avaliacao FROM avaliacao_ambiente;
 
-SELECT * FROM participantes_agendamento;
+SELECT id_favorito, id_usu, id_ambiente FROM favoritos;
+
+
 
 
 describe Tipo_Usuario;
