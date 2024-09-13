@@ -5,6 +5,8 @@ module.exports = {
         try {   
             
             const sql = `id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu FROM Usuario`;
+
+            AAA
             
             const usuario = await db.query(sql);
            
