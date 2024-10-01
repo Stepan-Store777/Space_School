@@ -11,7 +11,7 @@ module.exports = {
     async listarUsuario(request, response) {
         try {   
             
-            const sql = `SELECT id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu FROM Usuario;`;
+            const sql = `SELECT id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu FROM Usuario;`
             
             const usuario = await db.query(sql);
            

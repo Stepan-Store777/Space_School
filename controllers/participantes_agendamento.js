@@ -1,12 +1,24 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarParticipantes_agendamento(request, response) {
         try {            
+
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            
+            const participantes_agendamento = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: participantes_agendamento
             });
         } catch (error) {
             return response.status(500).json({
@@ -17,7 +29,12 @@ module.exports = {
         }
     }, 
     async cadastrarParticipantes_agendamento(request, response) {
-        try {            
+        try {      
+            
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            
+            const participantes_agendamento = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 
@@ -32,7 +49,12 @@ module.exports = {
         }
     }, 
     async editarParticipantes_agendamento(request, response) {
-        try {            
+        try {  
+            
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            
+            const participantes_agendamento = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -47,7 +69,12 @@ module.exports = {
         }
     }, 
     async apagarParticipantes_agendamento(request, response) {
-        try {            
+        try {   
+            
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            
+            const participantes_agendamento = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 

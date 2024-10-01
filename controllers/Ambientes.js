@@ -1,12 +1,24 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarAmbientes(request, response) {
-        try {            
+        try {      
+            
+            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;`
+            
+            const Ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: Ambiente
             });
         } catch (error) {
             return response.status(500).json({
@@ -18,6 +30,11 @@ module.exports = {
     }, 
     async cadastrarAmbientes(request, response) {
         try {            
+
+            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;`
+            
+            const Ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 
@@ -32,7 +49,12 @@ module.exports = {
         }
     }, 
     async editarAmbientes(request, response) {
-        try {            
+        try {     
+            
+            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;`
+            
+            const Ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -47,7 +69,12 @@ module.exports = {
         }
     }, 
     async apagarAmbientes(request, response) {
-        try {            
+        try {    
+            
+            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;`
+            
+            const Ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 

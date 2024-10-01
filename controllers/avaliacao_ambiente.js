@@ -1,12 +1,25 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarAvaliacao_ambiente(request, response) {
-        try {            
+        try {      
+            
+            const sql = `SELECT id_avaliacao, id_ambiente, id_usu, nota_avaliacao FROM avaliacao_ambiente;`
+            
+            const avaliacao_ambiente = await db.query(sql);
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: avaliacao_ambiente
             });
         } catch (error) {
             return response.status(500).json({
@@ -17,7 +30,12 @@ module.exports = {
         }
     }, 
     async cadastrarAvaliacao_ambiente(request, response) {
-        try {            
+        try {       
+            
+            const sql = `SELECT id_avaliacao, id_ambiente, id_usu, nota_avaliacao FROM avaliacao_ambiente;`
+            
+            const avaliacao_ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 
@@ -32,7 +50,12 @@ module.exports = {
         }
     }, 
     async editarAvaliacao_ambiente(request, response) {
-        try {            
+        try {    
+            
+            const sql = `SELECT id_avaliacao, id_ambiente, id_usu, nota_avaliacao FROM avaliacao_ambiente;`
+            
+            const avaliacao_ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -47,7 +70,12 @@ module.exports = {
         }
     }, 
     async apagarAvaliacao_ambiente(request, response) {
-        try {            
+        try {       
+            
+            const sql = `SELECT id_avaliacao, id_ambiente, id_usu, nota_avaliacao FROM avaliacao_ambiente;`
+            
+            const avaliacao_ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 

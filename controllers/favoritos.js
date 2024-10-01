@@ -1,12 +1,24 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarFavoritos(request, response) {
         try {            
+
+            const sql = `SELECT id_favorito, id_usu, id_ambiente FROM favoritos;`
+            
+            const favorito = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: favorito
             });
         } catch (error) {
             return response.status(500).json({
@@ -17,7 +29,13 @@ module.exports = {
         }
     }, 
     async cadastrarFavoritos(request, response) {
-        try {            
+        try {  
+            
+            const sql = `INSERT id_favorito, id_usu, id_ambiente FROM favoritos;`
+            
+            const favorito = await db.query(sql);
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 
@@ -32,7 +50,13 @@ module.exports = {
         }
     }, 
     async editarFavoritos(request, response) {
-        try {            
+        try {     
+            
+            const sql = `UPDATE id_favorito, id_usu, id_ambiente FROM favoritos;`
+            
+            const favorito = await db.query(sql);
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -47,7 +71,13 @@ module.exports = {
         }
     }, 
     async apagarFavoritos(request, response) {
-        try {            
+        try {     
+            
+            const sql = `DELETE id_favorito, id_usu, id_ambiente FROM favoritos;`
+            
+            const favorito = await db.query(sql);
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 
