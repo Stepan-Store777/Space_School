@@ -51,6 +51,12 @@ module.exports = {
     }, 
     async editarUsuario(request, response) {
         try {            
+
+            const sql = `UPDATE INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
+                                             (?, ?, ?, ?, ?, ?, ?, ?)`
+                                             
+            const usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -66,6 +72,12 @@ module.exports = {
     }, 
     async apagarUsuario(request, response) {
         try {            
+
+            const sql = `DELETE INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
+                                             (?, ?, ?, ?, ?, ?, ?, ?)`
+                                             
+            const usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 
