@@ -11,14 +11,18 @@ module.exports = {
     async listarUsuario(request, response) {
         try {   
             
-            const sql = `SELECT id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu FROM Usuario;`
+            const sql = `SELECT id_usu, nome_usu, email_usu, 
+            senha_usu, id_Tipo_Usu, bloqueado_usu,
+            data_cad_usu, data_blog_usu
+            FROM Usuario`;
             
             const usuario = await db.query(sql);
            
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: usuario
+                dados: usuario [0]
+                
             });
         } catch (error) {
             return response.status(500).json({
@@ -31,9 +35,11 @@ module.exports = {
     async cadastrarUsuario(request, response) {
         try {    
             
-            const sql = `INSERT INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
-                                             (?, ?, ?, ?, ?, ?, ?, ?)`
-                                             
+            const sql = `INSERT id_usu, nome_usu, email_usu, 
+            senha_usu, id_Tipo_Usu, bloqueado_usu, 
+            data_cad_usu, data_blog_usu
+            FROM Usuario;`
+            
             const usuario = await db.query(sql);
 
             return response.status(200).json({
@@ -52,15 +58,17 @@ module.exports = {
     async editarUsuario(request, response) {
         try {            
 
-            const sql = `UPDATE INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
-                                             (?, ?, ?, ?, ?, ?, ?, ?)`
-                                             
+            const sql = `UPDATE id_usu, nome_usu, email_usu, 
+            senha_usu, id_Tipo_Usu, bloqueado_usu, 
+            data_cad_usu, data_blog_usu
+            FROM Usuario;`
+            
             const usuario = await db.query(sql);
 
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
-                dados: null
+                dados: usuario
             });
         } catch (error) {
             return response.status(500).json({
@@ -73,9 +81,11 @@ module.exports = {
     async apagarUsuario(request, response) {
         try {            
 
-            const sql = `DELETE INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
-                                             (?, ?, ?, ?, ?, ?, ?, ?)`
-                                             
+            const sql = `DELETE id_usu, nome_usu, email_usu, 
+            senha_usu, id_Tipo_Usu, bloqueado_usu, 
+            data_cad_usu, data_blog_usu
+            FROM Usuario`;
+            
             const usuario = await db.query(sql);
 
             return response.status(200).json({
