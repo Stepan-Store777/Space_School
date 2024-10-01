@@ -1,5 +1,12 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarUsuario(request, response) {
         try {   
@@ -22,7 +29,13 @@ module.exports = {
         }
     }, 
     async cadastrarUsuario(request, response) {
-        try {            
+        try {    
+            
+            const sql = `INSERT INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
+                                             (?, ?, ?, ?, ?, ?, ?, ?)`
+                                             
+            const usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 

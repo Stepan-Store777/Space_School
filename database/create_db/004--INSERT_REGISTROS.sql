@@ -5,6 +5,7 @@ INSERT INTO Tipo_Usuario (id_Tipo_Usu, descricao) VALUES
 (3, 'Aluno');
 
 INSERT INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu) VALUES 
+-- (?,            ?,                     ?,          ?, ?, ?,            ?,            ?)
 (1, 'João Paulo', 'joaopaulo@email.com', 'senha123', 1, 0, '2024-09-01', '2024-09-05'),  -- Administrador
 (2, 'Gabriel Henrique', 'gabrielhenrique@email.com', 'senha123', 2, 0, '2024-09-01', '2024-09-05'),  -- Coordenador
 (3, 'Maria Silva', 'maria@email.com', 'senha123', 3, 0, '2024-09-01', '2024-09-05'),  -- Aluna
