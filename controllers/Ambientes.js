@@ -10,15 +10,23 @@ apagar    = DELETE
 module.exports = {
     async listarAmbientes(request, response) {
         try {      
+            const { nome_ambiente, descricao_ambiente } = request.body;
+            const PesqNome = nome_ambiente ? `%${nome_ambiente}%` : `%%`;
+            const PesqDescricao = descricao_ambiente ? `%${descricao_ambiente}%` : `%%`;
             
-            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;`
+            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente 
+                         FROM Ambientes
+                         WHERE nome_ambiente LIKE ? AND descricao_ambiente LIKE ?;`;
             
-            const Ambiente = await db.query(sql);
-
+            const values = [PesqNome, PesqDescricao];
+            const Ambientes = await db.query(sql, values);
+            const nItens = Ambientes[0].length;
+    
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Lista de usuários.', 
-                dados: Ambiente
+                mensagem: 'Lista de ambientes.', 
+                dados: Ambientes[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({
@@ -27,18 +35,21 @@ module.exports = {
                 dados: error.message
             });
         }
-    }, 
+    },
+    
     async cadastrarAmbientes(request, response) {
-        try {            
-
-            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente FROM Ambientes;`
+        try {    
+            const { nome_ambiente, descricao_ambiente } = request.body;
+            const sql = `INSERT INTO Ambientes (nome_ambiente, descricao_ambiente) 
+                         VALUES (?, ?);`;
+            const values = [nome_ambiente, descricao_ambiente];
             
-            const Ambiente = await db.query(sql);
-
+            const resultado = await db.query(sql, values);
+    
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de usuário.', 
-                dados: null
+                mensagem: 'Cadastro de ambiente efetuado com sucesso.', 
+                dados: resultado[0].insertId
             });
         } catch (error) {
             return response.status(500).json({
@@ -47,7 +58,8 @@ module.exports = {
                 dados: error.message
             });
         }
-    }, 
+    },
+    
     async editarAmbientes(request, response) {
         try {     
             

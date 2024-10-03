@@ -95,4 +95,61 @@ module.exports = {
             });
         }
     }, 
-};
+    async ocultarUsuario(request, response) {
+        try {
+            const bloqueado_usu = false;
+            const { id_usu } = request.params;
+            const sql = `UPDATE Usuario SET bloqueado_usu = ?
+                         WHERE id_usu = ?; `;
+            const values = [bloqueado_usu, id_usu];
+            const atualizacao = await db.query( sql, values);
+
+            return response.status(200).json({
+                sucesso: true,
+                mensagem: `Usuario ${id_usu} excluído com sucesso`,
+                dados: atualizacao[0].affectedRows
+            });
+        } catch (error) {
+            return response.status(500).json({
+                sucesso: false,
+                mensagem: 'Erro na aquisição.',
+                dados: error.message
+            });
+        }
+        },
+        async login(request, response) {
+            try {            
+                const { email_usu, senha_usu } = request.body;
+        
+                const sql = `SELECT id_usu, nome_usu, id_Tipo_Usu 
+                             FROM Usuario 
+                             WHERE email_usu = ? AND senha_usu = ? AND bloqueado_usu = 1;`;
+                const values = [email_usu, senha_usu];
+        
+                const usuario = await db.query(sql, values);
+                const nItens = usuario[0].length;
+        
+                if (nItens < 1) { 
+                    return response.status(403).json({
+                        sucesso: false, 
+                        mensagem: 'Login e/ou senha inválido.', 
+                        dados: null,
+                    });
+                } 
+        
+                return response.status(200).json({
+                    sucesso: true,
+                    mensagem: 'Login efetuado com sucesso',
+                    dados: usuario[0]
+                });
+        
+            } catch (error) {
+                return response.status(500).json({
+                    sucesso: false,
+                    mensagem: 'Erro na requisição.',
+                    dados: error.message
+                });
+            }
+        },
+    }        
+
