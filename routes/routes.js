@@ -21,8 +21,8 @@ router.delete('/favoritos', FavoritosController.apagarFavoritos);
 
 router.get('/usuario', UsuariosController.listarUsuario); 
 router.post('/usuario', UsuariosController.cadastrarUsuario); 
-router.patch('/usuario', UsuariosController.editarUsuario); 
-router.delete('/usuario', UsuariosController.apagarUsuario); 
+router.patch('/usuario/:id_usu', UsuariosController.editarUsuario); 
+router.delete('/usuario/:id_usu', UsuariosController.apagarUsuario); 
 
 router.get('/participantes_agendamento', Participantes_agendamentoController.listarParticipantes_agendamento); 
 router.post('/participantes_agendamento', Participantes_agendamentoController.cadastrarParticipantes_agendamento); 
