@@ -5,7 +5,7 @@ module.exports = {
         try {   
             const sql = `SELECT id_usu, nome_usu, email_usu, 
                         senha_usu, id_Tipo_Usu, 1 AS bloqueado_usu,
-                        data_cad_usu, data_bloq_usu
+                        data_cad_usu, data_blog_usu
                         FROM Usuario`;
             
             const usuario = await db.query(sql);
@@ -27,11 +27,11 @@ module.exports = {
     }, 
     async cadastrarUsuario(request, response) {
         try {    
-            const { nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_bloq_usu } = request.body;
+            const { nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu } = request.body;
             const sql = `INSERT INTO usuario 
                          (nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_bloq_usu)
                          VALUES (?, ?, ?, ?, ?, ?, ?)`;
-            const values = [nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_bloq_usu];
+            const values = [nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu];
             const execSql = await db.query(sql, values);
 
             const id_usu = execSql[0].insertId;
