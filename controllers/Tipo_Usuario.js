@@ -1,12 +1,24 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarTipo_Usuario(request, response) {
-        try {            
+        try {       
+            
+            const sql = `SELECT id_Tipo_Usu, descricao FROM Tipo_Usuario;`;
+            
+            const Tipo_Usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: Tipo_Usuario
             });
         } catch (error) {
             return response.status(500).json({
@@ -17,7 +29,12 @@ module.exports = {
         }
     }, 
     async cadastrarTipo_Usuario(request, response) {
-        try {            
+        try {   
+            
+            const sql = `INSERT id_Tipo_Usu, descricao FROM Tipo_Usuario;`;
+            
+            const Tipo_Usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 
@@ -32,7 +49,12 @@ module.exports = {
         }
     }, 
     async editarTipo_Usuario(request, response) {
-        try {            
+        try {       
+            
+            const sql = `UPDATE id_Tipo_Usu, descricao FROM Tipo_Usuario;`;
+            
+            const Tipo_Usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -47,7 +69,12 @@ module.exports = {
         }
     }, 
     async apagarTipo_Usuario(request, response) {
-        try {            
+        try {     
+            
+            const sql = `DELETE id_Tipo_Usu, descricao FROM Tipo_Usuario;`;
+            
+            const Tipo_Usuario = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 

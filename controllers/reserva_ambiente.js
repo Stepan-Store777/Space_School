@@ -1,12 +1,24 @@
 const db = require('../database/connection'); 
 
+/*
+listar    = SELECT
+cadastrar = INSERT
+editar    = UPDATE
+apagar    = DELETE
+*/
+
 module.exports = {
     async listarReserva_ambiente(request, response) {
-        try {            
+        try {           
+            
+            const sql = `SELECT id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            
+            const reserva_ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: null
+                dados: reserva_ambiente
             });
         } catch (error) {
             return response.status(500).json({
@@ -17,7 +29,12 @@ module.exports = {
         }
     }, 
     async cadastrarReserva_ambiente(request, response) {
-        try {            
+        try {      
+            
+            const sql = `INSERT id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            
+            const reserva_ambiente = await db.query(sql);
+            
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuário.', 
@@ -32,7 +49,12 @@ module.exports = {
         }
     }, 
     async editarReserva_ambiente(request, response) {
-        try {            
+        try {   
+            
+            const sql = `UPDATE id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            
+            const reserva_ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Editar usuário.', 
@@ -47,7 +69,12 @@ module.exports = {
         }
     }, 
     async apagarReserva_ambiente(request, response) {
-        try {            
+        try {     
+            
+            const sql = `DELETE id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            
+            const reserva_ambiente = await db.query(sql);
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Apagar usuário.', 

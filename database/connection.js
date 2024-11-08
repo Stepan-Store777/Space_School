@@ -13,7 +13,7 @@ const config = {
    host: bd_servidor,
    port: bd_porta, //Default: 3306
    user: bd_usuario,
-   passoword: bd_senha,
+   password: bd_senha,
    database: bd_banco,
    waitForConnections : true,
    conecctionLimit : 10, // Default: 10 - deixar 100 ou 1000
