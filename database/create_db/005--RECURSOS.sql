@@ -1,17 +1,18 @@
 
-DROP TABLE Tipo_Usuario; 
-
-DROP TABLE Usuario; 
-
-DROP TABLE Ambientes;
-
-DROP TABLE reserva_ambiente; 
-
-DROP TABLE avaliacao_ambiente;
+DROP TABLE participantes_agendamento;
 
 DROP TABLE favoritos;
 
-DROP TABLE participantes_agendamento;
+DROP TABLE avaliacao_ambiente;
+
+DROP TABLE reserva_ambiente; 
+
+DROP TABLE Ambientes;
+
+DROP TABLE Usuario; 
+
+DROP TABLE Tipo_Usuario; 
+
 
 
 

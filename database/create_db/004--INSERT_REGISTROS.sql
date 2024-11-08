@@ -15,16 +15,16 @@ INSERT INTO Usuario (id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloque
 (7, 'Fernanda Lima', 'fernanda@email.com', 'senha123', 3, 0, '2024-09-01', '2024-09-05');  -- Aluna
 
 
-INSERT INTO Ambientes (id_ambiente, nome_ambiente, descricao_ambiente) VALUES 
-(1, 'Quadra', 'Quadra poliesportiva coberta'),
-(2, 'LAB1', 'Laboratório de informática 1'),
-(3, 'LAB2', 'Laboratório de informática 2'),
-(4, 'LAB3', 'Laboratório de informática 3'),
-(5, 'LAB4', 'Laboratório de informática 4'),
-(6, 'LAB5', 'Laboratório de informática 5'),
-(7, 'LAB6', 'Laboratório de informática 6'),
-(8, 'Audiovisual', 'Sala de Audiovisual'),
-(9, 'Biblioteca', 'Biblioteca da instituição');
+INSERT INTO Ambientes (id_ambiente, nome_ambiente, descricao_ambiente, imagem_ambiente) VALUES 
+(1, 'Quadra', 'Quadra poliesportiva coberta', 'Quadra.jpg'),
+(2, 'LAB1', 'Laboratório de informática 1', 'labNote.jpg'),
+(3, 'LAB2', 'Laboratório de informática 2', 'labNote.jpg'),
+(4, 'LAB3', 'Laboratório de informática 3', 'labNote.jpg'),
+(5, 'LAB4', 'Laboratório de informática 4', 'labNote.jpg'),
+(6, 'Sala 7 (Temática)', 'Laboratório adaptado para processos criativos práticos equipado com X computadores (Especificações dos PCs). O ambiente proporciona versatilidade, confortabilidade e estética agradável aos olhos', 'Sala7.jpg'),
+(7, 'Laboratório de Pranchetas', 'Laboratório para desenhos', 'LabPranch.jpg'),
+(8, 'Audiovisual', 'Sala de Audiovisual', 'SalaAula.jpg'),
+(9, 'Biblioteca', 'Biblioteca da instituição', 'Bibli.jpg');
 
 
 INSERT INTO reserva_ambiente (id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb) VALUES 

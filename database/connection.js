@@ -16,7 +16,7 @@ const config = {
    password: bd_senha,
    database: bd_banco,
    waitForConnections : true,
-   conecctionLimit : 10, // Default: 10 - deixar 100 ou 1000
+   connectionLimit : 10, // Default: 10 - deixar 100 ou 1000
    queueLimit: 0,
 }
 

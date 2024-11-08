@@ -1,4 +1,5 @@
 const db = require('../database/connection'); 
+var fse = require('fs-extra');
 
 /*
 listar    = SELECT
@@ -7,6 +8,17 @@ editar    = UPDATE
 apagar    = DELETE
 */
 
+function geraUrl (prd) {    
+    // garantir que valores em branco carreguem algo
+    let img = prd ? prd : 'SalaAula.jpg';
+    // verifica se imagem existe
+    if (!fse.existsSync('./public/ambientes/' + img)) {
+        img = 'SalaAula.jpg';
+    } 
+    // return 'http://10.67.22.144:3333/public/upload/produtos/' + img; // para usar com img html
+    return '/public/ambientes/' + img; //para usar no image do nextjs
+}
+
 module.exports = {
     async listarAmbientes(request, response) {
         try {      
@@ -14,18 +26,24 @@ module.exports = {
             const PesqNome = nome_ambiente ? `%${nome_ambiente}%` : `%%`;
             const PesqDescricao = descricao_ambiente ? `%${descricao_ambiente}%` : `%%`;
             
-            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente 
+            const sql = `SELECT id_ambiente, nome_ambiente, descricao_ambiente, imagem_ambiente 
                          FROM Ambientes
                          WHERE nome_ambiente LIKE ? AND descricao_ambiente LIKE ?;`;
             
             const values = [PesqNome, PesqDescricao];
-            const Ambientes = await db.query(sql, values);
-            const nItens = Ambientes[0].length;
+            const ambientes = await db.query(sql, values);
+            const nItens = ambientes[0].length;
+
+            // Itera sobre os usuários e formata o CPF
+            const ambientesComLink = ambientes[0].map(ambiente => ({
+                ...ambiente,
+                imagem_ambiente: geraUrl(ambiente.imagem_ambiente),                 
+            }));
     
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de ambientes.', 
-                dados: Ambientes[0],
+                dados: ambientesComLink,
                 nItens
             });
         } catch (error) {

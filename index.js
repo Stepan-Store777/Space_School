@@ -7,7 +7,10 @@ const router = require('./routes/routes');
 const app = express();
 app.use(cors());
 app.use(express.json());  // Substitua express() por express.json()
-app.use(router);
+app.use(router); 
+
+// tornando as pasta public acessível para imagens
+app.use('/public', express.static('public')); 
 
 const porta = 3333;
 

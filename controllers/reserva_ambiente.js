@@ -18,7 +18,7 @@ module.exports = {
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: reserva_ambiente
+                dados: reserva_ambiente[0]
             });
         } catch (error) {
             return response.status(500).json({

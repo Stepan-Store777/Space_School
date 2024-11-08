@@ -20,7 +20,8 @@ CREATE TABLE Usuario (
 CREATE TABLE Ambientes (
     id_ambiente INTEGER PRIMARY KEY,
     nome_ambiente VARCHAR(255) NOT NULL,
-    descricao_ambiente VARCHAR(255)
+    descricao_ambiente VARCHAR(255) NULL, 
+    imagem_ambiente VARCHAR(255) NULL
 );
 
 CREATE TABLE reserva_ambiente (
