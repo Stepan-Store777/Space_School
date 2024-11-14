@@ -2,7 +2,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb)  {
-            cb(null, './public/ambientes/');
+            cb(null, './ambientes/');
     }, 
     filename: function (req, file, cb) {
         //let data = new Date().toISOString().replace(/:/g, '-') + '-';
