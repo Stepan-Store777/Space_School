@@ -8,6 +8,7 @@ editar    = UPDATE
 apagar    = DELETE
 */
 
+
 function geraUrl (prd) {    
     // garantir que valores em branco carreguem algo
     let img = prd ? prd : 'SalaAula.jpg';
@@ -16,7 +17,7 @@ function geraUrl (prd) {
         img = 'SalaAula.jpg';
     } 
     // return 'http://10.67.22.144:3333/public/upload/produtos/' + img; // para usar com img html
-    return '/public/ambientes/' + img; //para usar no image do nextjs
+    return './public/ambientes/' + img; //para usar no image do nextjs
 }
 
 module.exports = {
