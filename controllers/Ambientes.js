@@ -13,11 +13,11 @@ function geraUrl (prd) {
     // garantir que valores em branco carreguem algo
     let img = prd ? prd : 'SalaAula.jpg';
     // verifica se imagem existe
-    if (!fse.existsSync('./public/ambientes/' + img)) {
+    if (fse.existsSync('/ambientes/' + img)) {
         img = 'SalaAula.jpg';
     } 
     // return 'http://10.67.22.144:3333/public/upload/produtos/' + img; // para usar com img html
-    return './public/ambientes/' + img; //para usar no image do nextjs
+    return '/ambientes/' + img; //para usar no image do nextjs
 }
 
 module.exports = {
