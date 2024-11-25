@@ -3,10 +3,8 @@ const db = require('../database/connection');
 module.exports = {
     async listarUsuario(request, response) {
         try {   
-            const sql = `SELECT id_usu, nome_usu, email_usu, 
-                        senha_usu, id_Tipo_Usu, 1 AS bloqueado_usu,
-                        data_cad_usu, data_blog_usu
-                        FROM Usuario`;
+            const sql = `SELECT id_usu, nome_usu, email_usu, senha_usu, id_Tipo_Usu, data_cad_usu
+                         FROM Usuario`;
             
             const usuario = await db.query(sql);
             const nItens = usuario[0].length;
@@ -27,11 +25,11 @@ module.exports = {
     }, 
     async cadastrarUsuario(request, response) {
         try {    
-            const { nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu } = request.body;
+            const { nome_usu, email_usu, senha_usu, id_Tipo_Usu, data_cad_usu } = request.body;
             const sql = `INSERT INTO usuario 
-                         (nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_bloq_usu)
-                         VALUES (?, ?, ?, ?, ?, ?, ?)`;
-            const values = [nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu];
+                         (nome_usu, email_usu, senha_usu, id_Tipo_Usu, data_cad_usu)
+                         VALUES (?, ?, ?, ?, ?)`;
+            const values = [nome_usu, email_usu, senha_usu, id_Tipo_Usu, data_cad_usu];
             const execSql = await db.query(sql, values);
 
             const id_usu = execSql[0].insertId;
@@ -51,12 +49,12 @@ module.exports = {
     }, 
     async editarUsuario(request, response) {
         try {            
-            const { nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu } = request.body;
-            const {id_usu} = request.params;
+            const { nome_usu, email_usu, senha_usu, id_Tipo_Usu, data_cad_usu } = request.body;
+            const { id_usu } = request.params;
             const sql = `UPDATE Usuario
-                         SET nome_usu = ?, email_usu = ?, senha_usu = ?, id_Tipo_Usu = ?, bloqueado_usu = ?, data_cad_usu = ?, data_blog_usu = ?
+                         SET nome_usu = ?, email_usu = ?, senha_usu = ?, id_Tipo_Usu = ?, data_cad_usu = ?
                          WHERE id_usu = ?`;
-            const values = [nome_usu, email_usu, senha_usu, id_Tipo_Usu, bloqueado_usu, data_cad_usu, data_blog_usu, id_usu];
+            const values = [nome_usu, email_usu, senha_usu, id_Tipo_Usu, data_cad_usu, id_usu];
             const atualizarDados = await db.query(sql, values);
 
             return response.status(200).json({
@@ -84,7 +82,7 @@ module.exports = {
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Usuário ${id_usu} apagado com sucesso.', 
+                mensagem: `Usuário ${id_usu} apagado com sucesso.`, 
                 dados: excluir[0].affectedRows
             });
         } catch (error) {
@@ -95,61 +93,38 @@ module.exports = {
             });
         }
     }, 
-    async ocultarUsuario(request, response) {
-        try {
-            const bloqueado_usu = false;
-            const { id_usu } = request.params;
-            const sql = `UPDATE Usuario SET bloqueado_usu = ?
-                         WHERE id_usu = ?; `;
-            const values = [bloqueado_usu, id_usu];
-            const atualizacao = await db.query( sql, values);
-
+    async login(request, response) {
+        try {            
+            const { email_usu, senha_usu } = request.body;
+        
+            const sql = `SELECT id_usu, nome_usu, id_Tipo_Usu 
+                         FROM Usuario 
+                         WHERE email_usu = ? AND senha_usu = ?`;
+            const values = [email_usu, senha_usu];
+        
+            const usuario = await db.query(sql, values);
+            const nItens = usuario[0].length;
+        
+            if (nItens < 1) { 
+                return response.status(403).json({
+                    sucesso: false, 
+                    mensagem: 'Login e/ou senha inválido.', 
+                    dados: null,
+                });
+            } 
+        
             return response.status(200).json({
                 sucesso: true,
-                mensagem: `Usuario ${id_usu} excluído com sucesso`,
-                dados: atualizacao[0].affectedRows
+                mensagem: 'Login efetuado com sucesso',
+                dados: usuario[0]
             });
+        
         } catch (error) {
             return response.status(500).json({
                 sucesso: false,
-                mensagem: 'Erro na aquisição.',
+                mensagem: 'Erro na requisição.',
                 dados: error.message
             });
         }
-        },
-        async login(request, response) {
-            try {            
-                const { email_usu, senha_usu } = request.body;
-        
-                const sql = `SELECT id_usu, nome_usu, id_Tipo_Usu 
-                             FROM Usuario 
-                             WHERE email_usu = ? AND senha_usu = ? AND bloqueado_usu = 1;`;
-                const values = [email_usu, senha_usu];
-        
-                const usuario = await db.query(sql, values);
-                const nItens = usuario[0].length;
-        
-                if (nItens < 1) { 
-                    return response.status(403).json({
-                        sucesso: false, 
-                        mensagem: 'Login e/ou senha inválido.', 
-                        dados: null,
-                    });
-                } 
-        
-                return response.status(200).json({
-                    sucesso: true,
-                    mensagem: 'Login efetuado com sucesso',
-                    dados: usuario[0]
-                });
-        
-            } catch (error) {
-                return response.status(500).json({
-                    sucesso: false,
-                    mensagem: 'Erro na requisição.',
-                    dados: error.message
-                });
-            }
-        },
-    }        
-
+    },
+}        

@@ -23,7 +23,6 @@ router.get('/usuario', UsuariosController.listarUsuario);
 router.post('/usuario', UsuariosController.cadastrarUsuario); 
 router.patch('/usuario/:id_usu', UsuariosController.editarUsuario); 
 router.delete('/usuario/:id_usu', UsuariosController.apagarUsuario); 
-router.delete('/usuario/del/:id_usu', UsuariosController.ocultarUsuario);
 router.post('/usuario/login', UsuariosController.login);
 
 router.get('/participantes_agendamento', Participantes_agendamentoController.listarParticipantes_agendamento); 
