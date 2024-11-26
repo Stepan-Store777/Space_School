@@ -11,7 +11,7 @@ module.exports = {
     async listarReserva_ambiente(request, response) {
         try {           
             
-            const sql = `SELECT id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `SELECT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 
@@ -31,7 +31,7 @@ module.exports = {
     async cadastrarReserva_ambiente(request, response) {
         try {      
             
-            const sql = `INSERT id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `INSERT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
             
@@ -51,7 +51,7 @@ module.exports = {
     async editarReserva_ambiente(request, response) {
         try {   
             
-            const sql = `UPDATE id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `UPDATE  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 
@@ -71,7 +71,7 @@ module.exports = {
     async apagarReserva_ambiente(request, response) {
         try {     
             
-            const sql = `DELETE id_rsvamb, data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `DELETE  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 
