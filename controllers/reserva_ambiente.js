@@ -11,7 +11,7 @@ module.exports = {
     async listarReserva_ambiente(request, response) {
         try {           
             
-            const sql = `SELECT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `SELECT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 
@@ -30,15 +30,18 @@ module.exports = {
     }, 
     async cadastrarReserva_ambiente(request, response) {
         try {      
+            const { data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, motivo_amb} = request.body;
+            const sql = `INSERT INTO reserva_ambiente (data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, motivo_amb)  
+                            VALUES (?, ?, ?, ?, ?, ?)`;
+            const values = [data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, motivo_amb];
+            const execSql = await db.query(sql, values);
             
-            const sql = `INSERT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
-            
-            const reserva_ambiente = await db.query(sql);
+            const id_rsvamb = execSql[0].insertId;
             
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de usuário.', 
-                dados: null
+                mensagem: 'Você reservou um ambiente.', 
+                dados: id_rsvamb
             });
         } catch (error) {
             return response.status(500).json({
@@ -51,7 +54,7 @@ module.exports = {
     async editarReserva_ambiente(request, response) {
         try {   
             
-            const sql = `UPDATE  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `UPDATE  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 
@@ -71,7 +74,7 @@ module.exports = {
     async apagarReserva_ambiente(request, response) {
         try {     
             
-            const sql = `DELETE  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, participantes_rsvamb, motivo_amb FROM reserva_ambiente;`;
+            const sql = `DELETE  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_usu, id_ambiente, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 

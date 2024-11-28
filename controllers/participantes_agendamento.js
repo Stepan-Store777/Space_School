@@ -11,7 +11,7 @@ module.exports = {
     async listarParticipantes_agendamento(request, response) {
         try {            
 
-            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante, serie_participante FROM participantes_agendamento;`;
             
             const participantes_agendamento = await db.query(sql);
 
@@ -31,7 +31,7 @@ module.exports = {
     async cadastrarParticipantes_agendamento(request, response) {
         try {      
             
-            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante, serie_participante FROM participantes_agendamento;`;
             
             const participantes_agendamento = await db.query(sql);
 
@@ -51,7 +51,7 @@ module.exports = {
     async editarParticipantes_agendamento(request, response) {
         try {  
             
-            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante, serie_participante FROM participantes_agendamento;`;
             
             const participantes_agendamento = await db.query(sql);
 
@@ -71,7 +71,7 @@ module.exports = {
     async apagarParticipantes_agendamento(request, response) {
         try {   
             
-            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante FROM participantes_agendamento;`;
+            const sql = `SELECT id_part_agend, id_rsvamb, nome_participante, serie_participante FROM participantes_agendamento;`;
             
             const participantes_agendamento = await db.query(sql);
 
