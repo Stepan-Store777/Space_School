@@ -11,7 +11,7 @@ module.exports = {
     async listarReserva_ambiente(request, response) {
         try {           
             
-            const sql = `SELECT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, motivo_amb FROM reserva_ambiente;`;
+            const sql = `SELECT  data_rsvamb, hr_inicial_rsvamb, hr_final_rsvamb, id_ambiente, id_usu, motivo_amb FROM reserva_ambiente;`;
             
             const reserva_ambiente = await db.query(sql);
 
